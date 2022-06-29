@@ -36,7 +36,7 @@
                                             <?php } ?>
                                         </ul>
                                     </div>
-                                </div>                          
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -46,11 +46,17 @@
                         <div class="block hide">
                             <hr>
                             <div class="row" id="block">
-
+                                <div class="download_pdf">
+                                    <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Download" href="" target="_blank" download>
+                                        Download PDF<i style="color: white;font-size: 18px !important;" class="fa fa-download"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>
@@ -100,29 +106,39 @@
     .col-md-2.j-box.lab-2.BHK {
         background-color: #c7f8ca;
     }
+
     .col-md-2.j-box.lab-1.BHK {
         background-color: #ffff45;
     }
+
     .col-md-2.j-box.lab-3.BHK {
         background-color: #ffa9ff;
     }
-    .col-md-2.j-box.lab-2.BHK.P{
+
+    .col-md-2.j-box.lab-2.BHK.P {
         background-color: #7ea1fa;
     }
-    .col-md-2.j-box.lab-2.BHK.SP{
+
+    .col-md-2.j-box.lab-2.BHK.SP {
         background-color: #a7905a;
     }
-    .col-md-2.j-box.lab-3.BHK.P{
+
+    .col-md-2.j-box.lab-3.BHK.P {
         background-color: #21ffff;
     }
 
 
-    .col-md-2.j-box.lab-2.BHK.sales, .col-md-2.j-box.lab-1.BHK.sales, .col-md-2.j-box.lab-3.BHK.sales, .col-md-2.j-box.lab-2.BHK.P.sales, .col-md-2.j-box.lab-2.BHK.SP.sales, .col-md-2.j-box.lab-3.BHK.P.sales{
+    .col-md-2.j-box.lab-2.BHK.sales,
+    .col-md-2.j-box.lab-1.BHK.sales,
+    .col-md-2.j-box.lab-3.BHK.sales,
+    .col-md-2.j-box.lab-2.BHK.P.sales,
+    .col-md-2.j-box.lab-2.BHK.SP.sales,
+    .col-md-2.j-box.lab-3.BHK.P.sales {
         background-color: #ff0000;
     }
-   
-     
-   
+
+
+
 
     .j-box {
         height: 115px;
@@ -135,7 +151,8 @@
         margin-bottom: 20px;
         cursor: pointer;
     }
-    .j-numb.sales{
+
+    .j-numb.sales {
         color: #fff;
         font-size: 13px;
         text-align: center;
@@ -152,8 +169,21 @@
         cursor: pointer;
         font-weight: 600;
     }
-    .j_url{
+
+    .j_url {
         text-decoration: none !important;
+    }
+
+    .download_pdf {
+        margin-top: 24px;
+        text-align: right;
+    }
+
+    .btn.btn-secondary.m-btn.m-btn--air.m-btn--custom {
+        padding: 17px;
+        background: #0054ac;
+        color: white;
+        border-radius: 0px;
     }
 </style>
 @endsection
