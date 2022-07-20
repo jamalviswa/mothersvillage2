@@ -23,7 +23,7 @@
                 <!--begin::Section-->
                 <div class="m-section__content    ">
                     <form method="GET" class="search-form form-inline " action="#">
-                    <div class="form-group">
+                        <div class="form-group">
                             <select class="form-control" name="application_number">
                                 @php
                                 $customers = App\Document::where('status','Active')->orderby('application_number','asc')->get();
@@ -52,8 +52,11 @@
                             <?php } ?>
                         </div>
                     </form>
+
                 </div>
+
             </div>
+
         </div>
         <div class="m-portlet">
             <div class="m-portlet__body">
@@ -62,6 +65,11 @@
                     <div class="m-section__content">
                         <?php if ($results->count() > '0') {
                         ?>
+                            <div class="download_pdf">
+                                <a rel="tooltip" style="background: #0054ac;" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Download" href="{{route('costs.export_cost')}}" target="_blank" download>
+                                    Export<i style="color: white;font-size: 18px !important;" class="fa fa-download"></i>
+                                </a>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table m-table m-table--head-bg-brand">
                                     <thead>
@@ -79,16 +87,16 @@
                                             <th>Gross Amount</th>
                                             <th>Total Amount</th>
                                             <?php
-                                            if($sessionadmin->adminname == "Admin"){
+                                            if ($sessionadmin->adminname == "Admin") {
                                             ?>
-                                            <th>Added By</th>
+                                                <th>Added By</th>
                                             <?php } ?>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                       
+
                                         $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
                                             $customer = App\Customer::where('customer_id', $result['customer_id'])->first();
@@ -115,9 +123,9 @@
                                                 <td class="text-center">{{"Rs. "}}{{ $result->gross_amount }}</td>
                                                 <td class="text-center">{{"Rs. "}}{{ $result->total_amount }}</td>
                                                 <?php
-                                            if($sessionadmin->adminname == "Admin"){        
-                                            ?>
-                                                <td>{{ $result->addedby }}</td>
+                                                if ($sessionadmin->adminname == "Admin") {
+                                                ?>
+                                                    <td>{{ $result->addedby }}</td>
                                                 <?php } ?>
                                                 <td class="text-center">
                                                     <div class="btn-group">
@@ -156,4 +164,17 @@
     </div>
 
 </div>
+<style>
+    .download_pdf {
+        margin-bottom: 14px;
+        text-align: right;
+    }
+
+    .btn.btn-secondary.m-btn.m-btn--air.m-btn--custom {
+        padding: 17px;
+        /* background: #0054ac; */
+        color: white;
+        border-radius: 0px;
+    }
+</style>
 @endsection

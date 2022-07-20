@@ -73,6 +73,11 @@
                     <div class="m-section__content">
                         <?php if ($results->count() > '0') {
                         ?>
+                        <div class="download_pdf">
+                                <a rel="tooltip" style="background: #0054ac;" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Download" href="{{route('payments.export_payment')}}" target="_blank" download>
+                                    Export<i style="color: white;font-size: 18px !important;" class="fa fa-download"></i>
+                                </a>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table m-table m-table--head-bg-brand">
                                     <thead>
@@ -270,4 +275,17 @@
     </div>
 
 </div>
+<style>
+    .download_pdf {
+        margin-bottom: 14px;
+        text-align: right;
+    }
+
+    .btn.btn-secondary.m-btn.m-btn--air.m-btn--custom {
+        padding: 17px;
+        /* background: #0054ac; */
+        color: white;
+        border-radius: 0px;
+    }
+</style>
 @endsection

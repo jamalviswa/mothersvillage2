@@ -71,6 +71,7 @@ Route::get('payments/view/{id}', 'PaymentsController@view')->name('payments.view
 Route::post('payments/map/', 'PaymentsController@map')->name('payments.map');
 Route::get('payments/invoicepdf/{id}', 'PaymentsController@invoicepdf')->name('payments.invoicepdf');
 Route::get('payments/receiptform/{id}', 'PaymentsController@receiptform')->name('payments.receiptform');
+Route::get('payments/exports/', 'PaymentsController@export_payment')->name('payments.export_payment');
 
 Route::any('receipts/index', 'ReceiptsController@index')->name('receipts.index');
 Route::get('receipts/add', 'ReceiptsController@add')->name('receipts.add');
@@ -105,6 +106,7 @@ Route::get('costs/view/{id}', 'CostsController@view')->name('costs.view');
 Route::post('costs/map/', 'CostsController@map')->name('costs.map');
 Route::get('costs/invoicepdf/{id}', 'CostsController@invoicepdf')->name('costs.invoicepdf');
 Route::get('costs/receiptform/{id}', 'CostsController@receiptform')->name('costs.receiptform');
+Route::get('costs/exports/', 'CostsController@export_cost')->name('costs.export_cost');
 
 Route::any('blocks/index', 'BlocksController@index')->name('blocks.index');
 Route::get('blocks/add', 'BlocksController@add')->name('blocks.add');

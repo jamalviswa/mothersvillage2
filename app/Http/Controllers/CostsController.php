@@ -21,6 +21,8 @@ use App\Flattype;
 use App\Floor;
 use App\Payment;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CostsExport;
 
 class CostsController extends Controller
 {
@@ -257,5 +259,9 @@ class CostsController extends Controller
      {
          $sessionadmin = Parent::checkadmin();
          return view('costs/receiptform', ['customer_id' => $id]);
+     }
+
+     public function export_cost(){
+        return Excel::download(new CostsExport, 'costs.xlsx');
      }
 }

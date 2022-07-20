@@ -16,6 +16,9 @@ use App\Payment;
 use App\Customer;
 use App\Cost;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PaymentsExport;
+
 
 class PaymentsController extends Controller
 {
@@ -812,4 +815,8 @@ class PaymentsController extends Controller
         $sessionadmin = Parent::checkadmin();
         return view('payments/receiptform', ['customer_id' => $id]);
     }
+
+    public function export_payment(){
+        return Excel::download(new PaymentsExport, 'payments.xlsx');
+     }
 }

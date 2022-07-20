@@ -73,12 +73,7 @@ class CustomersController extends Controller
                     return $query->where('email', $request->email)->where('status', '<>', 'Trash');
                 })
             ],
-            'phone' => [
-                'required', 'numeric', 'digits_between:1,15',
-                Rule::unique('customers')->where(function ($query) use ($request) {
-                    return $query->where('phone', $request->phone)->where('status', '<>', 'Trash');
-                })
-            ],
+            'phone' => ['required'],
             'application_number' => ['required', Rule::unique('customers')->where(function ($query) use ($request) {
                 return $query->where('application_number', $request->application_number)->where('status', '<>', 'Trash');
             })],
@@ -197,12 +192,7 @@ class CustomersController extends Controller
             'email' => ['required', Rule::unique('customers')->where(function ($query) use ($request, $id) {
                 return $query->where('email', $request->email)->where('customer_id', '<>', $id)->where('status', '<>', 'Trash');
             })],
-            'phone' => [
-                'required', 'numeric', 'digits_between:1,15',
-                Rule::unique('customers')->where(function ($query) use ($request, $id) {
-                    return $query->where('phone', $request->phone)->where('customer_id', '<>', $id)->where('status', '<>', 'Trash');
-                })
-            ],
+            'phone' => ['required'],
             'application_number' => ['required', Rule::unique('customers')->where(function ($query) use ($request, $id) {
                 return $query->where('application_number', $request->application_number)->where('customer_id', '<>', $id)->where('status', '<>', 'Trash');
             })],
