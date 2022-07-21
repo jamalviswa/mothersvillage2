@@ -14,7 +14,9 @@ use DB;
 use Redirect;
 use App\Payment;
 use App\Customer;
+use App\Document;
 use App\Cost;
+use App\Receipt;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PaymentsExport;
@@ -26,26 +28,26 @@ class PaymentsController extends Controller
     public function index()
     {
         $sessionadmin = Parent::checkadmin();
-        $result = Payment::where('status', '<>', 'Trash')->where('addmore','=','0')
+        $result = Payment::where('status', '<>', 'Trash')->where('addmore', '=', '0')
             ->orderBy('payment_id', 'desc');
-            if (!empty($_REQUEST['applicant_name'])) {
-                $customer = $_REQUEST['applicant_name'];
-                $result->where(function ($query) use ($customer) {
-                    $query->where('applicant_name', 'LIKE', "%$customer%");
-                });
-            }
-            if (!empty($_REQUEST['application_number'])) {
-                $customer = $_REQUEST['application_number'];
-                $result->where(function ($query) use ($customer) {
-                    $query->where('application_number', 'LIKE', "%$customer%");
-                });
-            }
-            if (!empty($_REQUEST['bank_type'])) {
-                $customer = $_REQUEST['bank_type'];
-                $result->where(function ($query) use ($customer) {
-                    $query->where('bank_type', 'LIKE', "%$customer%");
-                });
-            }
+        if (!empty($_REQUEST['applicant_name'])) {
+            $customer = $_REQUEST['applicant_name'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('applicant_name', 'LIKE', "%$customer%");
+            });
+        }
+        if (!empty($_REQUEST['application_number'])) {
+            $customer = $_REQUEST['application_number'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('application_number', 'LIKE', "%$customer%");
+            });
+        }
+        if (!empty($_REQUEST['bank_type'])) {
+            $customer = $_REQUEST['bank_type'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('bank_type', 'LIKE', "%$customer%");
+            });
+        }
 
         $result = $result->paginate(10);
 
@@ -53,6 +55,9 @@ class PaymentsController extends Controller
             'results' => $result
         ]);
     }
+
+
+
     public function add()
     {
         $sessionadmin = Parent::checkadmin();
@@ -422,9 +427,82 @@ class PaymentsController extends Controller
         $data->addmore = "0";
         $data->created_date = date('Y-m-d H:i:s');
         $data->save();
+
+        $data = new Receipt();
+        $data->customer_id = $request->application_number;
+        $names = Customer::where('customer_id', $request->application_number)->where('status', 'Active')->first();
+        $data->application_number = $names->application_number;
+        $data->received = $names->applicant_name;
+        $documents = Document::where('customer_id', $request->application_number)->where('status', 'Active')->first();
+        $data->referred_by = $documents->customer_type;
+
+        if ($request->onbook_received10per != 0) {
+            $data->receipt_no = $request->onbook_receiptno10per;
+            $data->receipt_date = $request->onbook_paymentdate10per;
+            $data->dated = $request->onbook_paymentdate10per;
+            $data->bank_towards = "Booking Advance";
+            $data->final_amount = $request->onbook_received10per;
+            $number = $request->onbook_received10per;
+            $data->cheque_no = $request->onbook_paymenttype10per;
+        } else if ($request->payments_received10per != 0) {
+            $data->receipt_no = $request->payments_receiptno10per;
+            $data->receipt_date = $request->payments_paymentdate10per;
+            $data->dated = $request->payments_paymentdate10per;
+            $data->bank_towards = "Payment Steps";
+            $data->final_amount = $request->payments_received10per;
+            $number = $request->payments_received10per;
+            $data->cheque_no = $request->payments_paymenttype10per;
+        }
+
+        $no = floor($number);
+        $point = round($number - $no, 2) * 100;
+        $hundred = null;
+        $digits_1 = strlen($no);
+        $i = 0;
+        $str = array();
+        $words = array(
+            '0' => '', '1' => 'One', '2' => 'Two',
+            '3' => 'Three', '4' => 'Four', '5' => 'Five', '6' => 'Six',
+            '7' => 'Seven', '8' => 'Eight', '9' => 'Nine',
+            '10' => 'Ten', '11' => 'Eleven', '12' => 'Twelve',
+            '13' => 'Thirteen', '14' => 'Fourteen',
+            '15' => 'Fifteen', '16' => 'Sixteen', '17' => 'Seventeen',
+            '18' => 'Eighteen', '19' => 'Nineteen', '20' => 'Twenty',
+            '30' => 'Thirty', '40' => 'Forty', '50' => 'Fifty',
+            '60' => 'Sixty', '70' => 'Seventy',
+            '80' => 'Eighty', '90' => 'Ninety'
+        );
+        $digits = array('', 'Hundred', 'Thousand', 'Lakh', 'Crore');
+        while ($i < $digits_1) {
+            $divider = ($i == 2) ? 10 : 100;
+            $number = floor($no % $divider);
+            $no = floor($no / $divider);
+            $i += ($divider == 10) ? 1 : 2;
+            if ($number) {
+                $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
+                $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
+                $str[] = ($number < 21) ? $words[$number] .
+                    " " . $digits[$counter] . $plural . " " . $hundred
+                    :
+                    $words[floor($number / 10) * 10]
+                    . " " . $words[$number % 10] . " "
+                    . $digits[$counter] . $plural . " " . $hundred;
+            } else $str[] = null;
+        }
+        $str = array_reverse($str);
+        $result = implode('', $str);
+        // $points = ($point) ?
+        //     "" . $words[$point / 10] . " " .
+        //     $words[$point = $point % 10] : '';
+        $data->sum_rupees = $result . "Rupees";
+        $data->addedby = $sessionadmin->username;
+        $data->status = "Active";
+        $data->created_date = date('Y-m-d H:i:s');
+        $data->save();
+        $detail = Receipt::where('receipt_id', '=', $data->receipt_id)->first();
         Session::flash('message', 'Payment Details Added!');
         Session::flash('alert-class', 'success');
-        return \Redirect::route('payments.index', []);
+        return \Redirect::route('receipts.view', ['detail' => $detail]);
     }
     public function edit($id = null)
     {
@@ -744,7 +822,7 @@ class PaymentsController extends Controller
         $data->addedby = $sessionadmin->username;
         $data->created_date = date('Y-m-d H:i:s');
         $data->save();
-        $data = Payment::where('payment_id',$id)->update(['addmore'=>1]);
+        $data = Payment::where('payment_id', $id)->update(['addmore' => 1]);
 
 
         Session::flash('message', 'Payment Details Added!');
@@ -753,16 +831,16 @@ class PaymentsController extends Controller
     }
     public function delete(Request $request, $id = null)
     {
-        $payments = Payment::where('cost_id', '=', $id)->get();  
+        $payments = Payment::where('cost_id', '=', $id)->get();
         foreach ($payments as $payment) {
             $last = $payment['payment_id'];
-            $data = Payment::where('payment_id',$last)->update(['status'=>"Trash"]);
+            $data = Payment::where('payment_id', $last)->update(['status' => "Trash"]);
         }
         Session::flash('message', 'Deleted Sucessfully!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('payments.index', []);
     }
-   
+
     public function map(Request $request)
     {
         if (!empty($_REQUEST['application_name'])) {
@@ -792,19 +870,19 @@ class PaymentsController extends Controller
     public function view($id = null)
     {
         $sessionadmin = Parent::checkadmin();
-        $detail = Payment::where('customer_id', '=', $id)->where('status','Active');
-       
+        $detail = Payment::where('customer_id', '=', $id)->where('status', 'Active');
 
-         $detail = $detail->paginate(10);
+
+        $detail = $detail->paginate(10);
 
         return view('payments/view', ['results' => $detail]);
     }
     public function invoicepdf($id = null)
     {
         $sessionadmin = Parent::checkadmin();
-        
+
         $pdf = PDF::loadView('payments/receiptform', ['customer_id' => $id]);
-        
+
         $dates = Payment::where('customer_id', $id)->first();
         $file_name =  'payment_' . $dates['applicant_name'] . '_' . $dates['application_number'];
         return $pdf->download($file_name . '.pdf');
@@ -816,7 +894,8 @@ class PaymentsController extends Controller
         return view('payments/receiptform', ['customer_id' => $id]);
     }
 
-    public function export_payment(){
+    public function export_payment()
+    {
         return Excel::download(new PaymentsExport, 'payments.xlsx');
-     }
+    }
 }

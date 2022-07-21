@@ -189,6 +189,7 @@
                                                                 <th>Received Amount</th>
                                                                 <th>Balance Amount</th>
                                                                 <th>Payment Date</th>
+                                                                <th>Receipt No</th>
                                                                 <th>Transaction Type</th>
                                                                 <th>Payment Type</th>
                                                                 <th>Transaction Number</th>
@@ -213,6 +214,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('onbook_paymentdate10per') }}" type="text" autocomplete="off" class="form-control datepicker" name="onbook_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('onbook_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="onbook_receiptno10per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="onbook_transactiontype10per">
@@ -261,6 +265,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('payments_paymentdate10per') }}" type="text" autocomplete="off" class="form-control datepicker" name="payments_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('payments_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="payments_receiptno10per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="payments_transactiontype10per">
