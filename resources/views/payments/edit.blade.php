@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-<?php 
- // $detail = App\Payment::where('payment_id', '=', $detail['payment_id'])->first();
- $requestdatas = (!empty(old())) ? old() : $detail;
+<?php
+// $detail = App\Payment::where('payment_id', '=', $detail['payment_id'])->first();
+$requestdatas = (!empty(old())) ? old() : $detail;
 //  print_r($requestdatas);exit;
 ?>
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                 Transaction Type <span class="red">*</span>
+                                                Transaction Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
                                                 <select class="form-control transaction" name="transaction_type">
@@ -92,7 +92,7 @@
 
                                         <div class="form-group row" style="display: none;" id="banktype">
                                             <label class="col-md-5">
-                                                 Bank Type <span class="red">*</span>
+                                                Bank Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
                                                 <select class="form-control banks" name="bank_type">
@@ -112,12 +112,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row"  style="display: none;" id="bankname">
+                                        <div class="form-group row" style="display: none;" id="bankname">
                                             <label class="col-md-5">
-                                                 Bank Name <span class="red">*</span>
+                                                Bank Name <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                            <input value="{{ old('bank_name') }}" type="text" autocomplete="off" class="form-control" name="bank_name" />
+                                                <input value="{{ old('bank_name') }}" type="text" autocomplete="off" class="form-control" name="bank_name" />
                                                 @error('bank_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -126,12 +126,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row"  style="display: none;" id="loan">
+                                        <div class="form-group row" style="display: none;" id="loan">
                                             <label class="col-md-5">
-                                                 Loan Sansaction Amount <span class="red">*</span>
+                                                Loan Sansaction Amount <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                            <input value="{{ old('loan_amount') }}" type="text" autocomplete="off" class="form-control" name="loan_amount" />
+                                                <input value="{{ old('loan_amount') }}" type="text" autocomplete="off" class="form-control" name="loan_amount" />
                                                 @error('loan_amount')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -153,7 +153,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                       
+
 
                                     </div>
                                 </div>
@@ -176,14 +176,15 @@
                                                                     <th>Received Amount</th>
                                                                     <th>Balance Amount</th>
                                                                     <th>Payment Date</th>
+                                                                    <th>Receipt No</th>
                                                                     <th>Transaction Type</th>
                                                                     <th>Payment Type</th>
                                                                     <th>Transaction Number</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <?php 
-                                                                if($detail['onbook_balance10per'] == 0) {
+                                                                <?php
+                                                                if ($detail['onbook_balance10per'] == 0) {
                                                                     $onbook = "rows";
                                                                     $ons = "disabled";
                                                                 } else {
@@ -211,6 +212,9 @@
                                                                         <input value="{{ old('onbook_paymentdate10per') }}" <?php echo  $ons; ?> autocomplete="off" type="text" class="form-control datepicker" name="onbook_paymentdate10per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('onbook_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="onbook_receiptno10per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $ons; ?> autocomplete="off" name="onbook_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -236,11 +240,11 @@
                                                                         <input value="{{ old('onbook_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid10per" />
                                                                     </td>
                                                                     <td id="onrtgstd" style="display:none;">
-                                                                    <input value="{{ old('onbook_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid10per" />
-                                                                </td>
+                                                                        <input value="{{ old('onbook_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid10per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['payments_balance10per'] == 0) {
+                                                                <?php
+                                                                if ($detail['payments_balance10per'] == 0) {
                                                                     $payments = "rows";
                                                                     $pays = "disabled";
                                                                 } else {
@@ -268,6 +272,9 @@
                                                                         <input value="{{ old('payments_paymentdate10per') }}" autocomplete="off" <?php echo  $pays; ?> type="text" class="form-control datepicker" name="payments_paymentdate10per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('payments_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="payments_receiptno10per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" autocomplete="off" <?php echo  $pays; ?> name="payments_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -293,11 +300,11 @@
                                                                         <input value="{{ old('payments_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid10per" />
                                                                     </td>
                                                                     <td id="agreementsrtgstd" style="display:none;">
-                                                                    <input value="{{ old('payments_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid10per" />
-                                                                </td>
+                                                                        <input value="{{ old('payments_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid10per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['first_balance10per'] == 0) {
+                                                                <?php
+                                                                if ($detail['first_balance10per'] == 0) {
                                                                     $fir = "disabled";
                                                                     $first = "rows";
                                                                 } else {
@@ -306,7 +313,7 @@
                                                                 }
                                                                 ?>
                                                                 <tr class="<?php echo  $first; ?>">
-                                                               
+
                                                                     <td width="5%">
                                                                         3.
                                                                     </td>
@@ -323,7 +330,10 @@
                                                                         <input value="{{ old('first_balance10per') }}" class="form-control" type="text" disabled name="first_balance10per" id="balamount2" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('first_paymentdate10per') }}" autocomplete="off"<?php echo  $fir; ?> type="text" class="form-control datepicker" name="first_paymentdate10per" />
+                                                                        <input value="{{ old('first_paymentdate10per') }}" autocomplete="off" <?php echo  $fir; ?> type="text" class="form-control datepicker" name="first_paymentdate10per" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input value="{{ old('first_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="first_receiptno10per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" autocomplete="off" <?php echo  $fir; ?> name="first_transactiontype10per">
@@ -351,11 +361,11 @@
                                                                         <input value="{{ old('first_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid10per" />
                                                                     </td>
                                                                     <td id="1stfloorrtgstd" style="display:none;">
-                                                                    <input value="{{ old('first_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid10per" />
-                                                                </td>
+                                                                        <input value="{{ old('first_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid10per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['second_balance10per'] == 0) {
+                                                                <?php
+                                                                if ($detail['second_balance10per'] == 0) {
                                                                     $second = "rows";
                                                                     $sec = "disabled";
                                                                 } else {
@@ -383,6 +393,9 @@
                                                                         <input value="{{ old('second_paymentdate10per') }}" autocomplete="off" <?php echo  $sec; ?> type="text" class="form-control datepicker" name="second_paymentdate10per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('second_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="second_receiptno10per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" autocomplete="off" <?php echo  $sec; ?> name="second_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -408,12 +421,12 @@
                                                                         <input value="{{ old('second_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid10per" />
                                                                     </td>
                                                                     <td id="2ndfloorrtgstd" style="display:none;">
-                                                                    <input value="{{ old('second_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid10per" />
-                                                                </td>
+                                                                        <input value="{{ old('second_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid10per" />
+                                                                    </td>
                                                                 </tr>
 
-                                                                 <?php 
-                                                                if($detail['third_balance10per'] == 0) {
+                                                                <?php
+                                                                if ($detail['third_balance10per'] == 0) {
                                                                     $third = "rows";
                                                                     $thi = "disabled";
                                                                 } else {
@@ -441,6 +454,9 @@
                                                                         <input value="{{ old('third_paymentdate10per') }}" autocomplete="off" <?php echo  $thi; ?> type="text" class="form-control datepicker" name="third_paymentdate10per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('third_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="third_receiptno10per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" autocomplete="off" <?php echo  $thi; ?> name="third_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -466,11 +482,11 @@
                                                                         <input value="{{ old('third_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid10per" />
                                                                     </td>
                                                                     <td id="3rdfloorrtgstd" style="display:none;">
-                                                                    <input value="{{ old('third_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid10per" />
-                                                                </td>
+                                                                        <input value="{{ old('third_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid10per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['fourth_balance10per'] == 0) {
+                                                                <?php
+                                                                if ($detail['fourth_balance10per'] == 0) {
                                                                     $fourth = "rows";
                                                                     $four = "disabled";
                                                                 } else {
@@ -498,6 +514,9 @@
                                                                         <input value="{{ old('fourth_paymentdate10per') }}" autocomplete="off" <?php echo  $four; ?> type="text" class="form-control datepicker" name="fourth_paymentdate10per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('fourth_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="fourth_receiptno10per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" autocomplete="off" <?php echo  $four; ?> name="fourth_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -523,11 +542,11 @@
                                                                         <input value="{{ old('fourth_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid10per" />
                                                                     </td>
                                                                     <td id="4thfloorrtgstd" style="display:none;">
-                                                                    <input value="{{ old('fourth_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid10per" />
-                                                                </td>
+                                                                        <input value="{{ old('fourth_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid10per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['fifth_balance10per'] == 0) {
+                                                                <?php
+                                                                if ($detail['fifth_balance10per'] == 0) {
                                                                     $fifth = "rows";
                                                                     $fif = "disabled";
                                                                 } else {
@@ -543,7 +562,7 @@
                                                                         Completion of Fifth Floor 5%
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ $detail['fifth_balance10per'] }}"  class="form-control" type="text" disabled name="fifth10per" id="menu_price6" />
+                                                                        <input value="{{ $detail['fifth_balance10per'] }}" class="form-control" type="text" disabled name="fifth10per" id="menu_price6" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fifth_received10per') }}" type="text" <?php echo  $fif; ?> class="form-control" name="fifth_received10per" id="recamount6" />
@@ -553,6 +572,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fifth_paymentdate10per') }}" autocomplete="off" <?php echo  $fif; ?> type="text" class="form-control datepicker" name="fifth_paymentdate10per" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input value="{{ old('fifth_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="fifth_receiptno10per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" <?php echo  $fif; ?> name="fifth_transactiontype10per">
@@ -580,11 +602,11 @@
                                                                         <input value="{{ old('fifth_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid10per" />
                                                                     </td>
                                                                     <td id="5thfloorrtgstd" style="display:none;">
-                                                                    <input value="{{ old('fifth_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid10per" />
-                                                                </td>
+                                                                        <input value="{{ old('fifth_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid10per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['handover_balance10per'] == 0) {
+                                                                <?php
+                                                                if ($detail['handover_balance10per'] == 0) {
                                                                     $handover = "rows";
                                                                     $handov = "disabled";
                                                                 } else {
@@ -612,6 +634,9 @@
                                                                         <input value="{{ old('handover_paymentdate10per') }}" autocomplete="off" <?php echo  $handov; ?> type="text" class="form-control datepicker" name="handover_paymentdate10per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('handover_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="handover_receiptno10per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $handov; ?> name="handover_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -637,8 +662,8 @@
                                                                         <input value="{{ old('handover_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid10per" />
                                                                     </td>
                                                                     <td id="handoverrtgstd" style="display:none;">
-                                                                    <input value="{{ old('handover_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid10per" />
-                                                                </td>
+                                                                        <input value="{{ old('handover_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid10per" />
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -666,14 +691,15 @@
                                                                     <th>Received Amount</th>
                                                                     <th>Balance Amount</th>
                                                                     <th>Payment Date</th>
+                                                                    <th>Receipt No</th>
                                                                     <th>Transaction Type</th>
                                                                     <th>Payment Type</th>
                                                                     <th>Transaction Number</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <?php 
-                                                                if($detail['onbook_balance15per'] == 0) {
+                                                                <?php
+                                                                if ($detail['onbook_balance15per'] == 0) {
                                                                     $onbook15 = "rows";
                                                                     $onbook1523 = "disabled";
                                                                 } else {
@@ -701,6 +727,9 @@
                                                                         <input value="{{ old('onbook_paymentdate15per') }}" autocomplete="off" <?php echo  $onbook1523; ?> type="text" class="form-control datepicker" name="onbook_paymentdate15per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('onbook_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="onbook_receiptno15per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $onbook1523; ?> name="onbook_transactiontype15per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -726,11 +755,11 @@
                                                                         <input value="{{ old('onbook_neftid15per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid15per" />
                                                                     </td>
                                                                     <td id="onrtgstd15per" style="display:none;">
-                                                                    <input value="{{ old('onbook_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid15per" />
-                                                                </td>
+                                                                        <input value="{{ old('onbook_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid15per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['payments_balance15per'] == 0) {
+                                                                <?php
+                                                                if ($detail['payments_balance15per'] == 0) {
                                                                     $payments15 = "rows";
                                                                     $payments1523 = "disabled";
                                                                 } else {
@@ -758,6 +787,9 @@
                                                                         <input value="{{ old('payments_paymentdate15per') }}" <?php echo  $payments1523; ?> autocomplete="off" type="text" class="form-control datepicker" name="payments_paymentdate15per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('payments_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="payments_receiptno15per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $payments1523; ?> name="payments_transactiontype15per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -783,11 +815,11 @@
                                                                         <input value="{{ old('payments_neftid15per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="payments_neftid15per" />
                                                                     </td>
                                                                     <td id="agreementsrtgstd15per" style="display:none;">
-                                                                    <input value="{{ old('payments_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid15per" />
-                                                                </td>
+                                                                        <input value="{{ old('payments_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid15per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['first_balance15per'] == 0) {
+                                                                <?php
+                                                                if ($detail['first_balance15per'] == 0) {
                                                                     $first15 = "rows";
                                                                     $first1523 = "disabled";
                                                                 } else {
@@ -815,6 +847,9 @@
                                                                         <input value="{{ old('first_paymentdate15per') }}" autocomplete="off" <?php echo  $first1523; ?> type="text" class="form-control datepicker" name="first_paymentdate15per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('first_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="first_receiptno15per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $first1523; ?> name="first_transactiontype15per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -840,11 +875,11 @@
                                                                         <input value="{{ old('first_neftid15per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="first_neftid15per" />
                                                                     </td>
                                                                     <td id="1stfloorrtgstd15per" style="display:none;">
-                                                                    <input value="{{ old('first_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid15per" />
-                                                                </td>
+                                                                        <input value="{{ old('first_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid15per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['second_balance15per'] == 0) {
+                                                                <?php
+                                                                if ($detail['second_balance15per'] == 0) {
                                                                     $second15 = "rows";
                                                                     $second1523 = "disabled";
                                                                 } else {
@@ -872,6 +907,9 @@
                                                                         <input value="{{ old('second_paymentdate15per') }}" <?php echo  $second1523; ?> autocomplete="off" type="text" class="form-control datepicker" name="second_paymentdate15per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('second_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="second_receiptno15per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $second1523; ?> name="second_transactiontype15per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -897,11 +935,11 @@
                                                                         <input value="{{ old('second_neftid15per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid15per" />
                                                                     </td>
                                                                     <td id="2ndfloorrtgstd15per" style="display:none;">
-                                                                    <input value="{{ old('second_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid15per" />
-                                                                </td>
+                                                                        <input value="{{ old('second_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid15per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['third_balance15per'] == 0) {
+                                                                <?php
+                                                                if ($detail['third_balance15per'] == 0) {
                                                                     $third15 = "rows";
                                                                     $third1523 = "disabled";
                                                                 } else {
@@ -929,6 +967,9 @@
                                                                         <input value="{{ old('third_paymentdate15per') }}" <?php echo  $third1523; ?> autocomplete="off" type="text" class="form-control datepicker" name="third_paymentdate15per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('third_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="third_receiptno15per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $third1523; ?> name="third_transactiontype15per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -954,11 +995,11 @@
                                                                         <input value="{{ old('third_neftid15per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="third_neftid15per" />
                                                                     </td>
                                                                     <td id="3rdfloorrtgstd15per" style="display:none;">
-                                                                    <input value="{{ old('third_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid15per" />
-                                                                </td>
+                                                                        <input value="{{ old('third_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid15per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['fourth_balance15per'] == 0) {
+                                                                <?php
+                                                                if ($detail['fourth_balance15per'] == 0) {
                                                                     $fourth15 = "rows";
                                                                     $fourth1523 = "disabled";
                                                                 } else {
@@ -986,6 +1027,9 @@
                                                                         <input value="{{ old('fourth_paymentdate15per') }}" <?php echo  $fourth1523; ?> autocomplete="off" type="text" class="form-control datepicker" name="fourth_paymentdate15per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('fourth_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="fourth_receiptno15per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $fourth1523; ?> name="fourth_transactiontype15per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1011,11 +1055,11 @@
                                                                         <input value="{{ old('fourth_neftid15per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid15per" />
                                                                     </td>
                                                                     <td id="4thfloorrtgstd15per" style="display:none;">
-                                                                    <input value="{{ old('fourth_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid15per" />
-                                                                </td>
+                                                                        <input value="{{ old('fourth_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid15per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['fifth_balance15per'] == 0) {
+                                                                <?php
+                                                                if ($detail['fifth_balance15per'] == 0) {
                                                                     $fifth15 = "rows";
                                                                     $fifth1523 = "disabled";
                                                                 } else {
@@ -1043,6 +1087,9 @@
                                                                         <input value="{{ old('fifth_paymentdate15per') }}" autocomplete="off" <?php echo  $fifth1523; ?> type="text" class="form-control datepicker" name="fifth_paymentdate15per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('fifth_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="fifth_receiptno15per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $fifth1523; ?> name="fifth_transactiontype15per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1068,11 +1115,11 @@
                                                                         <input value="{{ old('fifth_neftid15per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="fifth_neftid15per" />
                                                                     </td>
                                                                     <td id="5thfloorrtgstd15per" style="display:none;">
-                                                                    <input value="{{ old('fifth_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid15per" />
-                                                                </td>
+                                                                        <input value="{{ old('fifth_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid15per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['handover_balance15per'] == 0) {
+                                                                <?php
+                                                                if ($detail['handover_balance15per'] == 0) {
                                                                     $handover15 = "rows";
                                                                     $handover1523 = "disabled";
                                                                 } else {
@@ -1100,6 +1147,9 @@
                                                                         <input value="{{ old('handover_paymentdate15per') }}" <?php echo  $handover1523; ?> autocomplete="off" type="text" class="form-control datepicker" name="handover_paymentdate15per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('handover_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="handover_receiptno15per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $handover1523; ?> name="handover_transactiontype15per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1125,8 +1175,8 @@
                                                                         <input value="{{ old('handover_neftid15per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid15per" />
                                                                     </td>
                                                                     <td id="handoverrtgstd15per" style="display:none;">
-                                                                    <input value="{{ old('handover_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid15per" />
-                                                                </td>
+                                                                        <input value="{{ old('handover_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid15per" />
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -1154,14 +1204,15 @@
                                                                     <th>Received Amount</th>
                                                                     <th>Balance Amount</th>
                                                                     <th>Payment Date</th>
+                                                                    <th>Receipt No</th>
                                                                     <th>Transaction Type</th>
                                                                     <th>Payment Type</th>
                                                                     <th>Transaction Number</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <?php 
-                                                                if($detail['onbook_balance20per'] == 0) {
+                                                                <?php
+                                                                if ($detail['onbook_balance20per'] == 0) {
                                                                     $onbook20 = "rows";
                                                                     $onbook2023 = "disabled";
                                                                 } else {
@@ -1189,6 +1240,9 @@
                                                                         <input value="{{ old('onbook_paymentdate20per') }}" <?php echo  $onbook2023; ?> autocomplete="off" type="text" class="form-control datepicker" name="onbook_paymentdate20per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('onbook_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="onbook_receiptno20per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $onbook2023; ?> name="onbook_transactiontype20per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1214,11 +1268,11 @@
                                                                         <input value="{{ old('onbook_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid20per" />
                                                                     </td>
                                                                     <td id="onrtgstd20per" style="display:none;">
-                                                                    <input value="{{ old('onbook_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid20per" />
-                                                                </td>
+                                                                        <input value="{{ old('onbook_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid20per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['payments_balance20per'] == 0) {
+                                                                <?php
+                                                                if ($detail['payments_balance20per'] == 0) {
                                                                     $payments20 = "rows";
                                                                     $payments2023 = "disabled";
                                                                 } else {
@@ -1246,6 +1300,9 @@
                                                                         <input value="{{ old('payments_paymentdate20per') }}" <?php echo  $payments2023; ?> autocomplete="off" type="text" class="form-control datepicker" name="payments_paymentdate20per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('payments_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="payments_receiptno20per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $payments2023; ?> name="payments_transactiontype20per">
                                                                             <option value=''>--Select--</option>
                                                                             <option {{ old('payments_transactiontype20per')=="Ownfund"?"selected":"" }} value="Ownfund">Own Fund</option>
@@ -1271,11 +1328,11 @@
                                                                         <input value="{{ old('payments_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid20per" />
                                                                     </td>
                                                                     <td id="agreementsrtgstd20per" style="display:none;">
-                                                                    <input value="{{ old('payments_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid20per" />
-                                                                </td>
+                                                                        <input value="{{ old('payments_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid20per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['first_balance20per'] == 0) {
+                                                                <?php
+                                                                if ($detail['first_balance20per'] == 0) {
                                                                     $first20 = "rows";
                                                                     $first2023 = "disabled";
                                                                 } else {
@@ -1303,6 +1360,9 @@
                                                                         <input value="{{ old('first_paymentdate20per') }}" <?php echo  $first2023; ?> autocomplete="off" type="text" class="form-control datepicker" name="first_paymentdate20per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('first_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="first_receiptno20per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $first2023; ?> name="first_transactiontype20per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1328,11 +1388,11 @@
                                                                         <input value="{{ old('first_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid20per" />
                                                                     </td>
                                                                     <td id="1stfloorrtgstd20per" style="display:none;">
-                                                                    <input value="{{ old('first_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid20per" />
-                                                                </td>
+                                                                        <input value="{{ old('first_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid20per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['second_balance20per'] == 0) {
+                                                                <?php
+                                                                if ($detail['second_balance20per'] == 0) {
                                                                     $second20 = "rows";
                                                                     $second2023 = "disabled";
                                                                 } else {
@@ -1360,6 +1420,9 @@
                                                                         <input value="{{ old('second_paymentdate20per') }}" <?php echo  $second2023; ?> autocomplete="off" type="text" class="form-control datepicker" name="second_paymentdate20per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('second_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="second_receiptno20per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $second2023; ?> name="second_transactiontype20per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1385,11 +1448,11 @@
                                                                         <input value="{{ old('second_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid20per" />
                                                                     </td>
                                                                     <td id="2ndfloorrtgstd20per" style="display:none;">
-                                                                    <input value="{{ old('second_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid20per" />
-                                                                </td>
+                                                                        <input value="{{ old('second_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid20per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['third_balance20per'] == 0) {
+                                                                <?php
+                                                                if ($detail['third_balance20per'] == 0) {
                                                                     $third20 = "rows";
                                                                     $third2023 = "disabled";
                                                                 } else {
@@ -1417,6 +1480,9 @@
                                                                         <input value="{{ old('third_paymentdate20per') }}" <?php echo  $third2023; ?> autocomplete="off" type="text" class="form-control datepicker" name="third_paymentdate20per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('third_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="third_receiptno20per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $third2023; ?> name="third_transactiontype20per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1442,11 +1508,11 @@
                                                                         <input value="{{ old('third_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid20per" />
                                                                     </td>
                                                                     <td id="3rdfloorrtgstd20per" style="display:none;">
-                                                                    <input value="{{ old('third_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid20per" />
-                                                                </td>
+                                                                        <input value="{{ old('third_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid20per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['fourth_balance20per'] == 0) {
+                                                                <?php
+                                                                if ($detail['fourth_balance20per'] == 0) {
                                                                     $fourth20 = "rows";
                                                                     $fourth2023 = "disabled";
                                                                 } else {
@@ -1474,6 +1540,9 @@
                                                                         <input value="{{ old('fourth_paymentdate20per') }}" <?php echo  $fourth2023; ?> autocomplete="off" type="text" class="form-control datepicker" name="fourth_paymentdate20per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('fourth_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="fourth_receiptno20per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $fourth2023; ?> name="fourth_transactiontype20per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1499,11 +1568,11 @@
                                                                         <input value="{{ old('fourth_neftid20per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="fourth_neftid20per" />
                                                                     </td>
                                                                     <td id="4thfloorrtgstd20per" style="display:none;">
-                                                                    <input value="{{ old('fourth_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid20per" />
-                                                                </td>
+                                                                        <input value="{{ old('fourth_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid20per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['fifth_balance20per'] == 0) {
+                                                                <?php
+                                                                if ($detail['fifth_balance20per'] == 0) {
                                                                     $fifth20 = "rows";
                                                                     $fifth2023 = "disabled";
                                                                 } else {
@@ -1531,6 +1600,9 @@
                                                                         <input value="{{ old('fifth_paymentdate20per') }}" <?php echo  $fifth2023; ?> autocomplete="off" type="text" class="form-control datepicker" name="fifth_paymentdate20per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('fifth_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="fifth_receiptno20per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $fifth2023; ?> name="fifth_transactiontype20per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1556,11 +1628,11 @@
                                                                         <input value="{{ old('fifth_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid20per" />
                                                                     </td>
                                                                     <td id="5thfloorrtgstd20per" style="display:none;">
-                                                                    <input value="{{ old('fifth_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid20per" />
-                                                                </td>
+                                                                        <input value="{{ old('fifth_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid20per" />
+                                                                    </td>
                                                                 </tr>
-                                                                <?php 
-                                                                if($detail['handover_balance20per'] == 0) {
+                                                                <?php
+                                                                if ($detail['handover_balance20per'] == 0) {
                                                                     $handover20 = "rows";
                                                                     $handover2023 = "disabled";
                                                                 } else {
@@ -1588,6 +1660,9 @@
                                                                         <input value="{{ old('handover_paymentdate20per') }}" <?php echo  $handover2023; ?> autocomplete="off" type="text" class="form-control datepicker" name="handover_paymentdate20per" />
                                                                     </td>
                                                                     <td>
+                                                                        <input value="{{ old('handover_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="handover_receiptno20per" />
+                                                                    </td>
+                                                                    <td>
                                                                         <select class="form-control" <?php echo  $handover2023; ?> name="handover_transactiontype20per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
@@ -1613,8 +1688,8 @@
                                                                         <input value="{{ old('handover_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid20per" />
                                                                     </td>
                                                                     <td id="handoverrtgstd20per" style="display:none;">
-                                                                    <input value="{{ old('handover_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid20per" />
-                                                                </td>
+                                                                        <input value="{{ old('handover_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid20per" />
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -1643,45 +1718,44 @@
 
 
 <script>
-
-jQuery(document).ready(function() {
+    jQuery(document).ready(function() {
         jQuery('.transaction').change(function() {
-            if (jQuery(this).val() === "Ownfund") {            
+            if (jQuery(this).val() === "Ownfund") {
                 jQuery('#banktype').hide();
                 jQuery('#loan').hide();
                 jQuery('#bankname').hide();
-            } else if (jQuery(this).val() === "Bank") {          
-                jQuery('#banktype').show(); 
-                jQuery('#loan').show();           
-            } else {           
-                jQuery('#banktype').hide(); 
-                jQuery('#loan').hide();    
-                jQuery('#bankname').hide();      
+            } else if (jQuery(this).val() === "Bank") {
+                jQuery('#banktype').show();
+                jQuery('#loan').show();
+            } else {
+                jQuery('#banktype').hide();
+                jQuery('#loan').hide();
+                jQuery('#bankname').hide();
             }
         });
     });
 
     jQuery(document).ready(function() {
         jQuery('.banks').change(function() {
-            if (jQuery(this).val() === "OTHERS") {            
+            if (jQuery(this).val() === "OTHERS") {
                 jQuery('#bankname').show();
-            } else if (jQuery(this).val() === "SBI") {          
-                jQuery('#bankname').hide();            
-            } else if (jQuery(this).val() === "HDFC") {          
-                jQuery('#bankname').hide();            
-            } else if (jQuery(this).val() === "IOB") {          
-                jQuery('#bankname').hide();            
-            } else if (jQuery(this).val() === "LIC") {          
-                jQuery('#bankname').hide();            
-            } else if (jQuery(this).val() === "CANARA") {          
-                jQuery('#bankname').hide();            
-            } else {           
-                jQuery('#bankname').hide();           
+            } else if (jQuery(this).val() === "SBI") {
+                jQuery('#bankname').hide();
+            } else if (jQuery(this).val() === "HDFC") {
+                jQuery('#bankname').hide();
+            } else if (jQuery(this).val() === "IOB") {
+                jQuery('#bankname').hide();
+            } else if (jQuery(this).val() === "LIC") {
+                jQuery('#bankname').hide();
+            } else if (jQuery(this).val() === "CANARA") {
+                jQuery('#bankname').hide();
+            } else {
+                jQuery('#bankname').hide();
             }
         });
     });
 
-   jQuery(document).ready(function() {
+    jQuery(document).ready(function() {
         jQuery('.onbook').change(function() {
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#onchequetd').show();
@@ -1693,7 +1767,7 @@ jQuery(document).ready(function() {
                 jQuery('#onnefttd').show();
                 jQuery('#oncashtd').hide();
                 jQuery('#onrtgstd').hide();
-            }  else if (jQuery(this).val() === "RTGS") {
+            } else if (jQuery(this).val() === "RTGS") {
                 jQuery('#onchequetd').hide();
                 jQuery('#onnefttd').hide();
                 jQuery('#oncashtd').hide();
@@ -2483,8 +2557,8 @@ jQuery(document).ready(function() {
         background: #329f5b;
     }
 
-    .rows{
-        background:red;
+    .rows {
+        background: red;
     }
 </style>
 @endsection

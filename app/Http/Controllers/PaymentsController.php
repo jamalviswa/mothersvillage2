@@ -434,8 +434,12 @@ class PaymentsController extends Controller
         $data->application_number = $names->application_number;
         $data->received = $names->applicant_name;
         $documents = Document::where('customer_id', $request->application_number)->where('status', 'Active')->first();
-        $data->referred_by = $documents->customer_type;
-
+        if($documents->customer_type == "Referedby"){
+            $data->referred_by = $documents->refered_name;
+        } else {
+            $data->referred_by = $documents->customer_type;
+        }
+        
         if ($request->onbook_received10per != 0) {
             $data->receipt_no = $request->onbook_receiptno10per;
             $data->receipt_date = $request->onbook_paymentdate10per;
@@ -448,10 +452,186 @@ class PaymentsController extends Controller
             $data->receipt_no = $request->payments_receiptno10per;
             $data->receipt_date = $request->payments_paymentdate10per;
             $data->dated = $request->payments_paymentdate10per;
-            $data->bank_towards = "Payment Steps";
+            $data->bank_towards = "Agreement Payment";
             $data->final_amount = $request->payments_received10per;
             $number = $request->payments_received10per;
             $data->cheque_no = $request->payments_paymenttype10per;
+        } else if ($request->first_received10per != 0) {
+            $data->receipt_no = $request->first_receiptno10per;
+            $data->receipt_date = $request->first_paymentdate10per;
+            $data->dated = $request->first_paymentdate10per;
+            $data->bank_towards = "First Payment";
+            $data->final_amount = $request->first_received10per;
+            $number = $request->first_received10per;
+            $data->cheque_no = $request->first_paymenttype10per;
+        } else if ($request->second_received10per != 0) {
+            $data->receipt_no = $request->second_receiptno10per;
+            $data->receipt_date = $request->second_paymentdate10per;
+            $data->dated = $request->second_paymentdate10per;
+            $data->bank_towards = "Second Payment";
+            $data->final_amount = $request->second_received10per;
+            $number = $request->second_received10per;
+            $data->cheque_no = $request->second_paymenttype10per;
+        } else if ($request->third_received10per != 0) {
+            $data->receipt_no = $request->third_receiptno10per;
+            $data->receipt_date = $request->third_paymentdate10per;
+            $data->dated = $request->third_paymentdate10per;
+            $data->bank_towards = "Third Payment";
+            $data->final_amount = $request->third_received10per;
+            $number = $request->third_received10per;
+            $data->cheque_no = $request->third_paymenttype10per;
+        } else if ($request->fourth_received10per != 0) {
+            $data->receipt_no = $request->fourth_receiptno10per;
+            $data->receipt_date = $request->fourth_paymentdate10per;
+            $data->dated = $request->fourth_paymentdate10per;
+            $data->bank_towards = "Fourth Payment";
+            $data->final_amount = $request->fourth_received10per;
+            $number = $request->fourth_received10per;
+            $data->cheque_no = $request->fourth_paymenttype10per;
+        } else if ($request->fifth_received10per != 0) {
+            $data->receipt_no = $request->fifth_receiptno10per;
+            $data->receipt_date = $request->fifth_paymentdate10per;
+            $data->dated = $request->fifth_paymentdate10per;
+            $data->bank_towards = "Fifth Payment";
+            $data->final_amount = $request->fifth_received10per;
+            $number = $request->fifth_received10per;
+            $data->cheque_no = $request->fifth_paymenttype10per;
+        } else if ($request->handover_received10per != 0) {
+            $data->receipt_no = $request->handover_receiptno10per;
+            $data->receipt_date = $request->handover_paymentdate10per;
+            $data->dated = $request->handover_paymentdate10per;
+            $data->bank_towards = "Handover Payment";
+            $data->final_amount = $request->handover_received10per;
+            $number = $request->handover_received10per;
+            $data->cheque_no = $request->handover_paymenttype10per;
+        } else if ($request->onbook_received15per != 0) {
+            $data->receipt_no = $request->onbook_receiptno15per;
+            $data->receipt_date = $request->onbook_paymentdate15per;
+            $data->dated = $request->onbook_paymentdate15per;
+            $data->bank_towards = "Booking Advance";
+            $data->final_amount = $request->onbook_received15per;
+            $number = $request->onbook_received15per;
+            $data->cheque_no = $request->onbook_paymenttype15per;
+        } else if ($request->payments_received15per != 0) {
+            $data->receipt_no = $request->payments_receiptno15per;
+            $data->receipt_date = $request->payments_paymentdate15per;
+            $data->dated = $request->payments_paymentdate15per;
+            $data->bank_towards = "Agreement Payment";
+            $data->final_amount = $request->payments_received15per;
+            $number = $request->payments_received15per;
+            $data->cheque_no = $request->payments_paymenttype15per;
+        } else if ($request->first_received15per != 0) {
+            $data->receipt_no = $request->first_receiptno15per;
+            $data->receipt_date = $request->first_paymentdate15per;
+            $data->dated = $request->first_paymentdate15per;
+            $data->bank_towards = "First Payment";
+            $data->final_amount = $request->first_received15per;
+            $number = $request->first_received15per;
+            $data->cheque_no = $request->first_paymenttype15per;
+        } else if ($request->second_received15per != 0) {
+            $data->receipt_no = $request->second_receiptno15per;
+            $data->receipt_date = $request->second_paymentdate15per;
+            $data->dated = $request->second_paymentdate15per;
+            $data->bank_towards = "Second Payment";
+            $data->final_amount = $request->second_received15per;
+            $number = $request->second_received15per;
+            $data->cheque_no = $request->second_paymenttype15per;
+        } else if ($request->third_received15per != 0) {
+            $data->receipt_no = $request->third_receiptno15per;
+            $data->receipt_date = $request->third_paymentdate15per;
+            $data->dated = $request->third_paymentdate15per;
+            $data->bank_towards = "Third Payment";
+            $data->final_amount = $request->third_received15per;
+            $number = $request->third_received15per;
+            $data->cheque_no = $request->third_paymenttype15per;
+        } else if ($request->fourth_received15per != 0) {
+            $data->receipt_no = $request->fourth_receiptno15per;
+            $data->receipt_date = $request->fourth_paymentdate15per;
+            $data->dated = $request->fourth_paymentdate15per;
+            $data->bank_towards = "Fourth Payment";
+            $data->final_amount = $request->fourth_received15per;
+            $number = $request->fourth_received15per;
+            $data->cheque_no = $request->fourth_paymenttype15per;
+        } else if ($request->fifth_received15per != 0) {
+            $data->receipt_no = $request->fifth_receiptno15per;
+            $data->receipt_date = $request->fifth_paymentdate15per;
+            $data->dated = $request->fifth_paymentdate15per;
+            $data->bank_towards = "Fifth Payment";
+            $data->final_amount = $request->fifth_received15per;
+            $number = $request->fifth_received15per;
+            $data->cheque_no = $request->fifth_paymenttype15per;
+        } else if ($request->handover_received15per != 0) {
+            $data->receipt_no = $request->handover_receiptno15per;
+            $data->receipt_date = $request->handover_paymentdate15per;
+            $data->dated = $request->handover_paymentdate15per;
+            $data->bank_towards = "Handover Payment";
+            $data->final_amount = $request->handover_received15per;
+            $number = $request->handover_received15per;
+            $data->cheque_no = $request->handover_paymenttype15per;
+        } else if ($request->onbook_received20per != 0) {
+            $data->receipt_no = $request->onbook_receiptno20per;
+            $data->receipt_date = $request->onbook_paymentdate20per;
+            $data->dated = $request->onbook_paymentdate20per;
+            $data->bank_towards = "Booking Advance";
+            $data->final_amount = $request->onbook_received20per;
+            $number = $request->onbook_received20per;
+            $data->cheque_no = $request->onbook_paymenttype20per;
+        } else if ($request->payments_received20per != 0) {
+            $data->receipt_no = $request->payments_receiptno20per;
+            $data->receipt_date = $request->payments_paymentdate20per;
+            $data->dated = $request->payments_paymentdate20per;
+            $data->bank_towards = "Agreement Payment";
+            $data->final_amount = $request->payments_received20per;
+            $number = $request->payments_received20per;
+            $data->cheque_no = $request->payments_paymenttype20per;
+        } else if ($request->first_received20per != 0) {
+            $data->receipt_no = $request->first_receiptno20per;
+            $data->receipt_date = $request->first_paymentdate20per;
+            $data->dated = $request->first_paymentdate20per;
+            $data->bank_towards = "First Payment";
+            $data->final_amount = $request->first_received20per;
+            $number = $request->first_received20per;
+            $data->cheque_no = $request->first_paymenttype20per;
+        } else if ($request->second_received20per != 0) {
+            $data->receipt_no = $request->second_receiptno20per;
+            $data->receipt_date = $request->second_paymentdate20per;
+            $data->dated = $request->second_paymentdate20per;
+            $data->bank_towards = "Second Payment";
+            $data->final_amount = $request->second_received20per;
+            $number = $request->second_received20per;
+            $data->cheque_no = $request->second_paymenttype20per;
+        } else if ($request->third_received20per != 0) {
+            $data->receipt_no = $request->third_receiptno20per;
+            $data->receipt_date = $request->third_paymentdate20per;
+            $data->dated = $request->third_paymentdate20per;
+            $data->bank_towards = "Third Payment";
+            $data->final_amount = $request->third_received20per;
+            $number = $request->third_received20per;
+            $data->cheque_no = $request->third_paymenttype20per;
+        } else if ($request->fourth_received20per != 0) {
+            $data->receipt_no = $request->fourth_receiptno20per;
+            $data->receipt_date = $request->fourth_paymentdate20per;
+            $data->dated = $request->fourth_paymentdate20per;
+            $data->bank_towards = "Fourth Payment";
+            $data->final_amount = $request->fourth_received20per;
+            $number = $request->fourth_received20per;
+            $data->cheque_no = $request->fourth_paymenttype20per;
+        } else if ($request->fifth_received20per != 0) {
+            $data->receipt_no = $request->fifth_receiptno20per;
+            $data->receipt_date = $request->fifth_paymentdate20per;
+            $data->dated = $request->fifth_paymentdate20per;
+            $data->bank_towards = "Fifth Payment";
+            $data->final_amount = $request->fifth_received20per;
+            $number = $request->fifth_received20per;
+            $data->cheque_no = $request->fifth_paymenttype20per;
+        } else if ($request->handover_received20per != 0) {
+            $data->receipt_no = $request->handover_receiptno20per;
+            $data->receipt_date = $request->handover_paymentdate20per;
+            $data->dated = $request->handover_paymentdate20per;
+            $data->bank_towards = "Handover Payment";
+            $data->final_amount = $request->handover_received20per;
+            $number = $request->handover_received20per;
+            $data->cheque_no = $request->handover_paymenttype20per;
         }
 
         $no = floor($number);
@@ -824,10 +1004,263 @@ class PaymentsController extends Controller
         $data->save();
         $data = Payment::where('payment_id', $id)->update(['addmore' => 1]);
 
+        $data = new Receipt();
+        $names = Payment::where('payment_id', $id)->first();
+        $data->customer_id = $names->customer_id;
+        $data->application_number = $names->application_number;
+        $data->received = $names->applicant_name;
+        $documents = Document::where('customer_id', $names->customer_id)->where('status', 'Active')->first();
+        if($documents->customer_type == "Referedby"){
+            $data->referred_by = $documents->refered_name;
+        } else {
+            $data->referred_by = $documents->customer_type;
+        }
 
+        if ($request->onbook_received10per != 0) {
+            $data->receipt_no = $request->onbook_receiptno10per;
+            $data->receipt_date = $request->onbook_paymentdate10per;
+            $data->dated = $request->onbook_paymentdate10per;
+            $data->bank_towards = "Booking Advance";
+            $data->final_amount = $request->onbook_received10per;
+            $number = $request->onbook_received10per;
+            $data->cheque_no = $request->onbook_paymenttype10per;
+        } else if ($request->payments_received10per != 0) {
+            $data->receipt_no = $request->payments_receiptno10per;
+            $data->receipt_date = $request->payments_paymentdate10per;
+            $data->dated = $request->payments_paymentdate10per;
+            $data->bank_towards = "Agreement Payment";
+            $data->final_amount = $request->payments_received10per;
+            $number = $request->payments_received10per;
+            $data->cheque_no = $request->payments_paymenttype10per;
+        } else if ($request->first_received10per != 0) {
+            $data->receipt_no = $request->first_receiptno10per;
+            $data->receipt_date = $request->first_paymentdate10per;
+            $data->dated = $request->first_paymentdate10per;
+            $data->bank_towards = "First Payment";
+            $data->final_amount = $request->first_received10per;
+            $number = $request->first_received10per;
+            $data->cheque_no = $request->first_paymenttype10per;
+        } else if ($request->second_received10per != 0) {
+            $data->receipt_no = $request->second_receiptno10per;
+            $data->receipt_date = $request->second_paymentdate10per;
+            $data->dated = $request->second_paymentdate10per;
+            $data->bank_towards = "Second Payment";
+            $data->final_amount = $request->second_received10per;
+            $number = $request->second_received10per;
+            $data->cheque_no = $request->second_paymenttype10per;
+        } else if ($request->third_received10per != 0) {
+            $data->receipt_no = $request->third_receiptno10per;
+            $data->receipt_date = $request->third_paymentdate10per;
+            $data->dated = $request->third_paymentdate10per;
+            $data->bank_towards = "Third Payment";
+            $data->final_amount = $request->third_received10per;
+            $number = $request->third_received10per;
+            $data->cheque_no = $request->third_paymenttype10per;
+        } else if ($request->fourth_received10per != 0) {
+            $data->receipt_no = $request->fourth_receiptno10per;
+            $data->receipt_date = $request->fourth_paymentdate10per;
+            $data->dated = $request->fourth_paymentdate10per;
+            $data->bank_towards = "Fourth Payment";
+            $data->final_amount = $request->fourth_received10per;
+            $number = $request->fourth_received10per;
+            $data->cheque_no = $request->fourth_paymenttype10per;
+        } else if ($request->fifth_received10per != 0) {
+            $data->receipt_no = $request->fifth_receiptno10per;
+            $data->receipt_date = $request->fifth_paymentdate10per;
+            $data->dated = $request->fifth_paymentdate10per;
+            $data->bank_towards = "Fifth Payment";
+            $data->final_amount = $request->fifth_received10per;
+            $number = $request->fifth_received10per;
+            $data->cheque_no = $request->fifth_paymenttype10per;
+        } else if ($request->handover_received10per != 0) {
+            $data->receipt_no = $request->handover_receiptno10per;
+            $data->receipt_date = $request->handover_paymentdate10per;
+            $data->dated = $request->handover_paymentdate10per;
+            $data->bank_towards = "Handover Payment";
+            $data->final_amount = $request->handover_received10per;
+            $number = $request->handover_received10per;
+            $data->cheque_no = $request->handover_paymenttype10per;
+        } else if ($request->onbook_received15per != 0) {
+            $data->receipt_no = $request->onbook_receiptno15per;
+            $data->receipt_date = $request->onbook_paymentdate15per;
+            $data->dated = $request->onbook_paymentdate15per;
+            $data->bank_towards = "Booking Advance";
+            $data->final_amount = $request->onbook_received15per;
+            $number = $request->onbook_received15per;
+            $data->cheque_no = $request->onbook_paymenttype15per;
+        } else if ($request->payments_received15per != 0) {
+            $data->receipt_no = $request->payments_receiptno15per;
+            $data->receipt_date = $request->payments_paymentdate15per;
+            $data->dated = $request->payments_paymentdate15per;
+            $data->bank_towards = "Agreement Payment";
+            $data->final_amount = $request->payments_received15per;
+            $number = $request->payments_received15per;
+            $data->cheque_no = $request->payments_paymenttype15per;
+        } else if ($request->first_received15per != 0) {
+            $data->receipt_no = $request->first_receiptno15per;
+            $data->receipt_date = $request->first_paymentdate15per;
+            $data->dated = $request->first_paymentdate15per;
+            $data->bank_towards = "First Payment";
+            $data->final_amount = $request->first_received15per;
+            $number = $request->first_received15per;
+            $data->cheque_no = $request->first_paymenttype15per;
+        } else if ($request->second_received15per != 0) {
+            $data->receipt_no = $request->second_receiptno15per;
+            $data->receipt_date = $request->second_paymentdate15per;
+            $data->dated = $request->second_paymentdate15per;
+            $data->bank_towards = "Second Payment";
+            $data->final_amount = $request->second_received15per;
+            $number = $request->second_received15per;
+            $data->cheque_no = $request->second_paymenttype15per;
+        } else if ($request->third_received15per != 0) {
+            $data->receipt_no = $request->third_receiptno15per;
+            $data->receipt_date = $request->third_paymentdate15per;
+            $data->dated = $request->third_paymentdate15per;
+            $data->bank_towards = "Third Payment";
+            $data->final_amount = $request->third_received15per;
+            $number = $request->third_received15per;
+            $data->cheque_no = $request->third_paymenttype15per;
+        } else if ($request->fourth_received15per != 0) {
+            $data->receipt_no = $request->fourth_receiptno15per;
+            $data->receipt_date = $request->fourth_paymentdate15per;
+            $data->dated = $request->fourth_paymentdate15per;
+            $data->bank_towards = "Fourth Payment";
+            $data->final_amount = $request->fourth_received15per;
+            $number = $request->fourth_received15per;
+            $data->cheque_no = $request->fourth_paymenttype15per;
+        } else if ($request->fifth_received15per != 0) {
+            $data->receipt_no = $request->fifth_receiptno15per;
+            $data->receipt_date = $request->fifth_paymentdate15per;
+            $data->dated = $request->fifth_paymentdate15per;
+            $data->bank_towards = "Fifth Payment";
+            $data->final_amount = $request->fifth_received15per;
+            $number = $request->fifth_received15per;
+            $data->cheque_no = $request->fifth_paymenttype15per;
+        } else if ($request->handover_received15per != 0) {
+            $data->receipt_no = $request->handover_receiptno15per;
+            $data->receipt_date = $request->handover_paymentdate15per;
+            $data->dated = $request->handover_paymentdate15per;
+            $data->bank_towards = "Handover Payment";
+            $data->final_amount = $request->handover_received15per;
+            $number = $request->handover_received15per;
+            $data->cheque_no = $request->handover_paymenttype15per;
+        } else if ($request->onbook_received20per != 0) {
+            $data->receipt_no = $request->onbook_receiptno20per;
+            $data->receipt_date = $request->onbook_paymentdate20per;
+            $data->dated = $request->onbook_paymentdate20per;
+            $data->bank_towards = "Booking Advance";
+            $data->final_amount = $request->onbook_received20per;
+            $number = $request->onbook_received20per;
+            $data->cheque_no = $request->onbook_paymenttype20per;
+        } else if ($request->payments_received20per != 0) {
+            $data->receipt_no = $request->payments_receiptno20per;
+            $data->receipt_date = $request->payments_paymentdate20per;
+            $data->dated = $request->payments_paymentdate20per;
+            $data->bank_towards = "Agreement Payment";
+            $data->final_amount = $request->payments_received20per;
+            $number = $request->payments_received20per;
+            $data->cheque_no = $request->payments_paymenttype20per;
+        } else if ($request->first_received20per != 0) {
+            $data->receipt_no = $request->first_receiptno20per;
+            $data->receipt_date = $request->first_paymentdate20per;
+            $data->dated = $request->first_paymentdate20per;
+            $data->bank_towards = "First Payment";
+            $data->final_amount = $request->first_received20per;
+            $number = $request->first_received20per;
+            $data->cheque_no = $request->first_paymenttype20per;
+        } else if ($request->second_received20per != 0) {
+            $data->receipt_no = $request->second_receiptno20per;
+            $data->receipt_date = $request->second_paymentdate20per;
+            $data->dated = $request->second_paymentdate20per;
+            $data->bank_towards = "Second Payment";
+            $data->final_amount = $request->second_received20per;
+            $number = $request->second_received20per;
+            $data->cheque_no = $request->second_paymenttype20per;
+        } else if ($request->third_received20per != 0) {
+            $data->receipt_no = $request->third_receiptno20per;
+            $data->receipt_date = $request->third_paymentdate20per;
+            $data->dated = $request->third_paymentdate20per;
+            $data->bank_towards = "Third Payment";
+            $data->final_amount = $request->third_received20per;
+            $number = $request->third_received20per;
+            $data->cheque_no = $request->third_paymenttype20per;
+        } else if ($request->fourth_received20per != 0) {
+            $data->receipt_no = $request->fourth_receiptno20per;
+            $data->receipt_date = $request->fourth_paymentdate20per;
+            $data->dated = $request->fourth_paymentdate20per;
+            $data->bank_towards = "Fourth Payment";
+            $data->final_amount = $request->fourth_received20per;
+            $number = $request->fourth_received20per;
+            $data->cheque_no = $request->fourth_paymenttype20per;
+        } else if ($request->fifth_received20per != 0) {
+            $data->receipt_no = $request->fifth_receiptno20per;
+            $data->receipt_date = $request->fifth_paymentdate20per;
+            $data->dated = $request->fifth_paymentdate20per;
+            $data->bank_towards = "Fifth Payment";
+            $data->final_amount = $request->fifth_received20per;
+            $number = $request->fifth_received20per;
+            $data->cheque_no = $request->fifth_paymenttype20per;
+        } else if ($request->handover_received20per != 0) {
+            $data->receipt_no = $request->handover_receiptno20per;
+            $data->receipt_date = $request->handover_paymentdate20per;
+            $data->dated = $request->handover_paymentdate20per;
+            $data->bank_towards = "Handover Payment";
+            $data->final_amount = $request->handover_received20per;
+            $number = $request->handover_received20per;
+            $data->cheque_no = $request->handover_paymenttype20per;
+        }
+
+        $no = floor($number);
+        $point = round($number - $no, 2) * 100;
+        $hundred = null;
+        $digits_1 = strlen($no);
+        $i = 0;
+        $str = array();
+        $words = array(
+            '0' => '', '1' => 'One', '2' => 'Two',
+            '3' => 'Three', '4' => 'Four', '5' => 'Five', '6' => 'Six',
+            '7' => 'Seven', '8' => 'Eight', '9' => 'Nine',
+            '10' => 'Ten', '11' => 'Eleven', '12' => 'Twelve',
+            '13' => 'Thirteen', '14' => 'Fourteen',
+            '15' => 'Fifteen', '16' => 'Sixteen', '17' => 'Seventeen',
+            '18' => 'Eighteen', '19' => 'Nineteen', '20' => 'Twenty',
+            '30' => 'Thirty', '40' => 'Forty', '50' => 'Fifty',
+            '60' => 'Sixty', '70' => 'Seventy',
+            '80' => 'Eighty', '90' => 'Ninety'
+        );
+        $digits = array('', 'Hundred', 'Thousand', 'Lakh', 'Crore');
+        while ($i < $digits_1) {
+            $divider = ($i == 2) ? 10 : 100;
+            $number = floor($no % $divider);
+            $no = floor($no / $divider);
+            $i += ($divider == 10) ? 1 : 2;
+            if ($number) {
+                $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
+                $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
+                $str[] = ($number < 21) ? $words[$number] .
+                    " " . $digits[$counter] . $plural . " " . $hundred
+                    :
+                    $words[floor($number / 10) * 10]
+                    . " " . $words[$number % 10] . " "
+                    . $digits[$counter] . $plural . " " . $hundred;
+            } else $str[] = null;
+        }
+        $str = array_reverse($str);
+        $result = implode('', $str);
+        // $points = ($point) ?
+        //     "" . $words[$point / 10] . " " .
+        //     $words[$point = $point % 10] : '';
+        $data->sum_rupees = $result . "Rupees";
+        $data->addedby = $sessionadmin->username;
+        $data->status = "Active";
+        $data->created_date = date('Y-m-d H:i:s');
+        $data->save();
+
+
+        $detail = Receipt::where('receipt_id', '=', $data->receipt_id)->first();
         Session::flash('message', 'Payment Details Added!');
         Session::flash('alert-class', 'success');
-        return \Redirect::route('payments.index', []);
+        return \Redirect::route('receipts.view', ['detail' => $detail]);
     }
     public function delete(Request $request, $id = null)
     {

@@ -318,6 +318,9 @@
                                                                     <input value="{{ old('first_paymentdate10per') }}" type="text" autocomplete="off" class="form-control datepicker" name="first_paymentdate10per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('first_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="first_receiptno10per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="first_transactiontype10per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -364,6 +367,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('second_paymentdate10per') }}" type="text" autocomplete="off" class="form-control datepicker" name="second_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('second_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="second_receiptno10per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="second_transactiontype10per">
@@ -414,6 +420,9 @@
                                                                     <input value="{{ old('third_paymentdate10per') }}" type="text" autocomplete="off" class="form-control datepicker" name="third_paymentdate10per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('third_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="third_receiptno10per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="third_transactiontype10per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -460,6 +469,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('fourth_paymentdate10per') }}" type="text" autocomplete="off" class="form-control datepicker" name="fourth_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fourth_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="fourth_receiptno10per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="fourth_transactiontype10per">
@@ -510,6 +522,9 @@
                                                                     <input value="{{ old('fifth_paymentdate10per') }}" type="text" autocomplete="off" class="form-control datepicker" name="fifth_paymentdate10per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('fifth_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="fifth_receiptno10per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="fifth_transactiontype10per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -556,6 +571,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('handover_paymentdate10per') }}" type="text" autocomplete="off" class="form-control datepicker" name="handover_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('handover_receiptno10per') }}" type="text" autocomplete="off" class="form-control" name="handover_receiptno10per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="handover_transactiontype10per">
@@ -611,6 +629,7 @@
                                                                 <th>Received Amount</th>
                                                                 <th>Balance Amount</th>
                                                                 <th>Payment Date</th>
+                                                                <th>Receipt No</th>
                                                                 <th>Transaction Type</th>
                                                                 <th>Payment Type</th>
                                                                 <th>Transaction Number</th>
@@ -635,6 +654,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('onbook_paymentdate15per') }}" type="text" autocomplete="off" class="form-control datepicker" name="onbook_paymentdate15per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('onbook_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="onbook_receiptno15per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="onbook_transactiontype15per">
@@ -685,6 +707,9 @@
                                                                     <input value="{{ old('payments_paymentdate15per') }}" type="text" autocomplete="off" class="form-control datepicker" name="payments_paymentdate15per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('payments_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="payments_receiptno15per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="payments_transactiontype15per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -731,6 +756,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('first_paymentdate15per') }}" type="text" autocomplete="off" class="form-control datepicker" name="first_paymentdate15per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('first_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="first_receiptno15per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="first_transactiontype15per">
@@ -781,6 +809,9 @@
                                                                     <input value="{{ old('second_paymentdate15per') }}" type="text" autocomplete="off" class="form-control datepicker" name="second_paymentdate15per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('second_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="second_receiptno15per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="second_transactiontype15per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -827,6 +858,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('third_paymentdate15per') }}" type="text" autocomplete="off" class="form-control datepicker" name="third_paymentdate15per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('third_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="third_receiptno15per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="third_transactiontype15per">
@@ -877,6 +911,9 @@
                                                                     <input value="{{ old('fourth_paymentdate15per') }}" type="text" autocomplete="off" class="form-control datepicker" name="fourth_paymentdate15per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('fourth_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="fourth_receiptno15per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="fourth_transactiontype15per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -925,6 +962,9 @@
                                                                     <input value="{{ old('fifth_paymentdate15per') }}" type="text" autocomplete="off" class="form-control datepicker" name="fifth_paymentdate15per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('fifth_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="fifth_receiptno15per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="fifth_transactiontype15per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -971,6 +1011,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('handover_paymentdate15per') }}" type="text" autocomplete="off" class="form-control datepicker" name="handover_paymentdate15per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('handover_receiptno15per') }}" type="text" autocomplete="off" class="form-control" name="handover_receiptno15per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="handover_transactiontype15per">
@@ -1026,6 +1069,7 @@
                                                                 <th>Received Amount</th>
                                                                 <th>Balance Amount</th>
                                                                 <th>Payment Date</th>
+                                                                <th>Receipt No</th>
                                                                 <th>Transaction Type</th>
                                                                 <th>Payment Type</th>
                                                                 <th>Transaction Number</th>
@@ -1050,6 +1094,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('onbook_paymentdate20per') }}" type="text" autocomplete="off" class="form-control datepicker" name="onbook_paymentdate20per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('onbook_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="onbook_receiptno20per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="onbook_transactiontype20per">
@@ -1100,6 +1147,9 @@
                                                                     <input value="{{ old('payments_paymentdate20per') }}" type="text" autocomplete="off" class="form-control datepicker" name="payments_paymentdate20per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('payments_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="payments_receiptno20per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="payments_transactiontype20per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -1146,6 +1196,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('first_paymentdate20per') }}" type="text" autocomplete="off" class="form-control datepicker" name="first_paymentdate20per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('first_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="first_receiptno20per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="first_transactiontype20per">
@@ -1196,6 +1249,9 @@
                                                                     <input value="{{ old('second_paymentdate20per') }}" type="text" autocomplete="off" class="form-control datepicker" name="second_paymentdate20per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('second_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="second_receiptno20per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="second_transactiontype20per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -1242,6 +1298,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('third_paymentdate20per') }}" type="text" autocomplete="off" class="form-control datepicker" name="third_paymentdate20per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('third_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="third_receiptno20per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="third_transactiontype20per">
@@ -1292,6 +1351,9 @@
                                                                     <input value="{{ old('fourth_paymentdate20per') }}" type="text" autocomplete="off" class="form-control datepicker" name="fourth_paymentdate20per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('fourth_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="fourth_receiptno20per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="fourth_transactiontype20per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -1340,6 +1402,9 @@
                                                                     <input value="{{ old('fifth_paymentdate20per') }}" type="text" autocomplete="off" class="form-control datepicker" name="fifth_paymentdate20per" />
                                                                 </td>
                                                                 <td>
+                                                                    <input value="{{ old('fifth_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="fifth_receiptno20per" />
+                                                                </td>
+                                                                <td>
                                                                     <select class="form-control" name="fifth_transactiontype20per">
                                                                         <option value=''>--Select--</option>
                                                                         <option value="Ownfund">OwnFund</option>
@@ -1386,6 +1451,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <input value="{{ old('handover_paymentdate20per') }}" type="text" autocomplete="off" class="form-control datepicker" name="handover_paymentdate20per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('handover_receiptno20per') }}" type="text" autocomplete="off" class="form-control" name="handover_receiptno20per" />
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control" name="handover_transactiontype20per">
